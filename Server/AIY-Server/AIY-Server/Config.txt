@@ -5,7 +5,7 @@
 5:API URL
 6:Debug mode (T or F)
 
-#Comments begin with a hash symbol and look like this
+#Comments begin with a hash and look like this
 #1:Port
 #2:Ip address (run ifconfig and get the local ethernet ip address)
 #3:Number of concurrent connections (always go 2 more than the number of AIY's running)
