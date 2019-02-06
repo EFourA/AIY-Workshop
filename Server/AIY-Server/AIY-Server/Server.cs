@@ -60,7 +60,7 @@ namespace AIY_Server
 
                     //var data = new byte[BytesToR];
 
-                    var data = sr.ReadToEnd().
+                    var data = sr.ReadToEnd();
 
 
                     Console.WriteLine("Client connected. Starting to receive the file");
