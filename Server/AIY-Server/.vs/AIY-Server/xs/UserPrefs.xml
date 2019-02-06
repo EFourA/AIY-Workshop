@@ -1,0 +1,20 @@
+﻿<Properties StartupConfiguration="{84A8DC0B-643A-4314-9E75-2F0471D6A443}|Default">
+  <MonoDevelop.Ide.ItemProperties.AIY-Server PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="AIY-Server/Config.txt">
+    <Files>
+      <File FileName="AIY-Server/Program.cs" Line="51" Column="1" />
+      <File FileName="AIY-Server/Drawing.cs" Line="8" Column="61" />
+      <File FileName="AIY-Server/Config.cs" Line="13" Column="9" />
+      <File FileName="AIY-Server/Config.txt" Line="9" Column="8" />
+      <File FileName="AIY-Server/ConfigManager.cs" Line="104" Column="88" />
+      <File FileName="AIY-Server/Server.cs" Line="63" Column="47" />
+      <File FileName="AIY-Server/Authentication.cs" Line="15" Column="40" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
