@@ -1,11 +1,11 @@
-﻿1:Port
-2:Local IP (of this machine)
-3:Number of concurrent connections
-4:API KEY
-5:API URL
-6:Debug mode (T or F)
+﻿1:2000
+2:172.16.0.174
+3:1
+4:8a79f6d5b20a4f87b70d1648be8678ee
+5:https://westus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-US
+6:F
 
-#Comments begin with a hash symbol and look like this
+#Comments begin with a hash and look like this
 #1:Port
 #2:Ip address (run ifconfig and get the local ethernet ip address)
 #3:Number of concurrent connections (always go 2 more than the number of AIY's running)
