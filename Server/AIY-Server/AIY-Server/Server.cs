@@ -13,13 +13,10 @@ namespace AIY_Server
         private bool Run;
         private List<Thread> pool = new List<Thread>();
         static TcpListener listener;
-        private FileStream fs;
 
         public Server()
         {
-            //loadConfig from local file
-            ConfigManager configManager = new ConfigManager();
-            _config = configManager.LoadConfig();
+            _config = new ConfigManager().LoadConfig();
             pool = new List<Thread>();
         }
 
@@ -47,39 +44,19 @@ namespace AIY_Server
             {
                 Socket soc = listener.AcceptSocket();
                 Console.WriteLine("Connected {0}!", soc.RemoteEndPoint);
-
                 try
                 {
                     Stream S = new NetworkStream(soc);
                     StreamReader sr = new StreamReader(S);
                     StreamWriter sw = new StreamWriter(S);
                     sw.AutoFlush = true;
-                    bool PlaceHolder = false;
 
-                    int BytesToR = Convert.ToInt32(sr.ReadToEnd().ToString());
+                    Console.WriteLine("Connected {0}", soc.RemoteEndPoint);
                     string input = sr.ReadToEnd();
                     string reply = (input == "ping") ? "pong" : getToken();
-                    PlaceHolder = !(input == "ping"); 
-
-                    //parse for ping/pong set placeholder as a result
-
-                    Console.WriteLine("Client connected. Starting to receive the file");
-
-                    if (PlaceHolder)
-                    {
-                        Authentication auth = new Authentication(_config.APIKEY);
-                        string requestUri = _config.APIURL;
-
-                        var token = auth.GetAccessToken();
-                        if (_config.DebugLog)
-                        {
-                            Console.WriteLine("Token: {0}\n", token);
-                            Console.WriteLine("Request Uri: " + requestUri + Environment.NewLine);
-                        }
-
-                        //return length of token and token itself to client
-                        Console.WriteLine("Disconnected {0}", soc.RemoteEndPoint);
-                    }
+                    sw.Write(makeLenStr(reply));
+                    sw.Write(reply);
+                    Console.WriteLine("Disconnected {0}", soc.RemoteEndPoint);
                 }
 
                 catch (Exception e)
@@ -90,10 +67,22 @@ namespace AIY_Server
             }
         }
 
-
+        //Makes a packet intended to let the client
+        //know how many bytes to expect in the api key
+        //about to be returned
+        private string makeLenStr(string lenstr)
+        {
+            while (lenstr.Length < 6)
+            {
+                lenstr = "0" + lenstr;
+            }
+            return lenstr;
+        }
 
         private string getToken()
         {
+            //As much as I'd love to only have to make an auth once
+            //And re-use it across all threads, it just ain't happening chief
             Authentication auth = new Authentication(_config.APIKEY);
             string requestUri = _config.APIURL;
             var token = auth.GetAccessToken();
@@ -104,31 +93,6 @@ namespace AIY_Server
             }
             return token;
         }
-
-        private byte[] toByteArray(string input)
-        {
-            var bytearray = new byte[1024];
-            int i = 0;
-            foreach (char c in input)
-            {
-                bytearray[i] = (byte)c;
-                i++;
-            }
-            return bytearray;
-        }
-
-        private byte[] toOtherByteArray(string input)
-        {
-            var bytearray = new byte[input.Length];
-            int i = 0;
-            foreach (char c in input)
-            {
-                bytearray[i] = (byte)c;
-                i++;
-            }
-            return bytearray;
-        }
-
 
         public void Stop()
         {
@@ -156,21 +120,7 @@ namespace AIY_Server
                     }
                 }
             }
-
         }
 
-        private string formatFilename(string input)
-        {
-            var rString = "";
-            foreach (char x in input)
-            {
-                var y = x.ToString();
-                if (y == ":" || y == "/" && rString.Length != 3 || y == ".")
-                {//do nothing lol 
-                }
-                else { rString += x; }
-            }
-            return rString;
-        }
     }
 }
