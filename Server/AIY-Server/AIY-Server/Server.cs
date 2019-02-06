@@ -57,122 +57,52 @@ namespace AIY_Server
                     bool PlaceHolder = false;
 
                     int BytesToR = Convert.ToInt32(sr.ReadToEnd().ToString());
+                    string input = sr.ReadToEnd();
+                    string reply = (input == "ping") ? "pong" : getToken();
+                    PlaceHolder = !(input == "ping"); 
 
-                    //var data = new byte[BytesToR];
-
-                    var data = sr.ReadToEnd();
-
+                    //parse for ping/pong set placeholder as a result
 
                     Console.WriteLine("Client connected. Starting to receive the file");
 
-                
-
-
-
-                    // Note: Sign up at https://azure.microsoft.com/en-us/try/cognitive-services/ to get a subscription key.  
                     if (PlaceHolder)
                     {
                         Authentication auth = new Authentication(_config.APIKEY);
                         string requestUri = _config.APIURL;
-                        string contentType = @"audio/wav; codec=""audio/pcm""; samplerate=16000";
-                        string responseString;
 
-                        try
+                        var token = auth.GetAccessToken();
+                        if (_config.DebugLog)
                         {
-                            var token = auth.GetAccessToken();
-                            if (_config.DebugLog)
-                            {
-                                Console.WriteLine("Token: {0}\n", token);
-                                Console.WriteLine("Request Uri: " + requestUri + Environment.NewLine);
-                            }
-
-                            HttpWebRequest request = null;
-                            request = (HttpWebRequest)HttpWebRequest.Create(requestUri);
-                            request.SendChunked = true;
-                            request.Accept = @"application/json;text/xml";
-                            request.Method = "POST";
-                            request.ProtocolVersion = HttpVersion.Version11;
-                            request.ContentType = contentType;
-                            request.Date = DateTime.Now;
-                            request.Headers["Authorization"] = "Bearer " + token;
-                            request.Date = DateTime.Now;
-
-                            using (fs = new MemoryStream(data)
-                            {
-                                buffer = null;
-                                int bytesRead = 0;
-                                using (Stream requestStream = request.GetRequestStream())
-                                {
-                                    buffer = new Byte[checked((uint)Math.Min(1024, (int)fs.Length))];
-                                    while ((bytesRead = fs.Read(buffer, 0, buffer.Length)) != 0)
-                                    {
-                                        requestStream.Write(buffer, 0, bytesRead);
-                                    }
-                                    requestStream.Flush();
-                                }
-
-                                Console.WriteLine("Request sent from {0}", soc.RemoteEndPoint);
-
-                                using (WebResponse response = request.GetResponse())
-                                {
-                                    using (StreamReader _sr = new StreamReader(response.GetResponseStream()))
-                                    {
-                                        responseString = _sr.ReadToEnd();
-                                    }
-
-                                    if (responseString != "")
-                                    {
-                                        if (_config.DebugLog)
-                                        {
-                                            Console.WriteLine("Response:");
-                                            Console.WriteLine(((HttpWebResponse)response).StatusCode);
-                                            Console.WriteLine(responseString);
-                                        }
-
-                                        if (responseString.Contains("DisplayText") && responseString.Contains("Success"))
-                                        {
-                                            string tempStr = "";
-                                            int i = 46;
-                                            while (tempStr == "" || tempStr[tempStr.Length - 1] != '"')
-                                            {
-                                                tempStr += responseString[i];
-                                                i++;
-                                            }
-                                            tempStr.Remove(tempStr.Length - 1);
-                                            responseString = tempStr;
-                                            string bytesToSend = responseString.Length.ToString();
-                                            while (bytesToSend.Length < 6)
-                                            {
-                                                bytesToSend = "0" + bytesToSend;
-                                            }
-                                            Console.WriteLine("{0} said: \"{1}", soc.RemoteEndPoint, responseString);
-                                            sw.Write(bytesToSend);
-                                            sw.Write(responseString);
-                                            Console.ReadLine();
-                                        }
-                                    }
-                                }
-                            }
+                            Console.WriteLine("Token: {0}\n", token);
+                            Console.WriteLine("Request Uri: " + requestUri + Environment.NewLine);
                         }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(ex.ToString());
-                            Console.WriteLine(ex.Message);
-                            Console.ReadLine();
-                        }
+
+                        //return length of token and token itself to client
+                        Console.WriteLine("Disconnected {0}", soc.RemoteEndPoint);
                     }
-                    Console.WriteLine("Disconnected {0}", soc.RemoteEndPoint);
                 }
+
                 catch (Exception e)
                 {
-                    //socket died somehow, respawn it to allow reconnection
-                    Console.WriteLine("Disconnected {0} with exception {1}", soc.RemoteEndPoint, e.Message);
+                    Console.WriteLine(e.Message);
+
                 }
-
             }
+        }
 
 
 
+        private string getToken()
+        {
+            Authentication auth = new Authentication(_config.APIKEY);
+            string requestUri = _config.APIURL;
+            var token = auth.GetAccessToken();
+            if (_config.DebugLog)
+            {
+                Console.WriteLine("Token: {0}\n", token);
+                Console.WriteLine("Request Uri: " + requestUri + Environment.NewLine);
+            }
+            return token;
         }
 
         private byte[] toByteArray(string input)
