@@ -9,10 +9,6 @@
   <ItemGroup>
     <None Remove="330.wav" />
     <None Remove="0.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Update="Config.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    <None Remove="Config.txt" />
   </ItemGroup>
 </Project>
