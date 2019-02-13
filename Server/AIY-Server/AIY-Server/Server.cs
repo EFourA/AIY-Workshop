@@ -52,8 +52,8 @@ namespace AIY_Server
                     sw.AutoFlush = true;
 
                     Console.WriteLine("Connected {0}", soc.RemoteEndPoint);
-                    string input = sr.ReadToEnd();
-                    string reply = (input == "ping") ? "pong" : getToken();
+                    string input = sr.Read().ToString();
+                    string reply = (input == "80") ? "pong" : getToken();
                     sw.Write(makeLenStr(reply));
                     sw.Write(reply);
                     Console.WriteLine("Disconnected {0}", soc.RemoteEndPoint);
@@ -70,8 +70,9 @@ namespace AIY_Server
         //Makes a packet intended to let the client
         //know how many bytes to expect in the api key
         //about to be returned
-        private string makeLenStr(string lenstr)
+        private string makeLenStr(string inpt)
         {
+            string lenstr = inpt.Length.ToString();
             while (lenstr.Length < 6)
             {
                 lenstr = "0" + lenstr;

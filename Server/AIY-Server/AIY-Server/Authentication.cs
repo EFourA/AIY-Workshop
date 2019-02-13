@@ -11,7 +11,7 @@ namespace AIY_Server
      */
     public class Authentication
     {
-        public static readonly string FetchTokenUri = "https://westus.api.cognitive.microsoft.com/sts/v1.0";
+        public static readonly string FetchTokenUri = "https://westeurope.api.cognitive.microsoft.com/sts/v1.0";
         private string subscriptionKey;
         private string token;
         private Timer accessTokenRenewer;

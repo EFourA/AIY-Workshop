@@ -1,7 +1,6 @@
 /Users/jamesm@kainos.com/Desktop/workingsmart/AIY-Workshop/Server/AIY-Server/AIY-Server/obj/Debug/netcoreapp2.1/AIY-Server.csproj.CoreCompileInputs.cache
 /Users/jamesm@kainos.com/Desktop/workingsmart/AIY-Workshop/Server/AIY-Server/AIY-Server/obj/Debug/netcoreapp2.1/AIY-Server.AssemblyInfoInputs.cache
 /Users/jamesm@kainos.com/Desktop/workingsmart/AIY-Workshop/Server/AIY-Server/AIY-Server/obj/Debug/netcoreapp2.1/AIY-Server.AssemblyInfo.cs
-/Users/jamesm@kainos.com/Desktop/workingsmart/AIY-Workshop/Server/AIY-Server/AIY-Server/bin/Debug/netcoreapp2.1/Config.txt
 /Users/jamesm@kainos.com/Desktop/workingsmart/AIY-Workshop/Server/AIY-Server/AIY-Server/bin/Debug/netcoreapp2.1/AIY-Server.deps.json
 /Users/jamesm@kainos.com/Desktop/workingsmart/AIY-Workshop/Server/AIY-Server/AIY-Server/bin/Debug/netcoreapp2.1/AIY-Server.runtimeconfig.json
 /Users/jamesm@kainos.com/Desktop/workingsmart/AIY-Workshop/Server/AIY-Server/AIY-Server/bin/Debug/netcoreapp2.1/AIY-Server.runtimeconfig.dev.json

@@ -1,9 +1,9 @@
-1:Port
-2:Local IP (of this machine)
-3:Number of concurrent connections
-4:API KEY
+1:2000
+2:172.16.0.174
+3:1
+4:505f69b54c0845ec8bf1c166c185938a
 5:API URL
-6:Debug mode (T or F)
+6:T
 
 #Comments begin with a hash and look like this
 #1:Port

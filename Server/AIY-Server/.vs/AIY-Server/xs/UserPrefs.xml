@@ -1,14 +1,14 @@
 ﻿<Properties StartupConfiguration="{84A8DC0B-643A-4314-9E75-2F0471D6A443}|Default">
   <MonoDevelop.Ide.ItemProperties.AIY-Server PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="AIY-Server/Config.txt">
+  <MonoDevelop.Ide.Workbench ActiveDocument="AIY-Server/Server.cs">
     <Files>
       <File FileName="AIY-Server/Program.cs" Line="51" Column="1" />
       <File FileName="AIY-Server/Drawing.cs" Line="8" Column="61" />
       <File FileName="AIY-Server/Config.cs" Line="31" Column="1" />
       <File FileName="AIY-Server/ConfigManager.cs" Line="15" Column="61" />
-      <File FileName="AIY-Server/Server.cs" Line="21" Column="10" />
-      <File FileName="AIY-Server/Authentication.cs" Line="15" Column="40" />
-      <File FileName="AIY-Server/Config.txt" Line="1" Column="1" />
+      <File FileName="AIY-Server/Server.cs" Line="43" Column="24" />
+      <File FileName="AIY-Server/Authentication.cs" Line="14" Column="74" />
+      <File FileName="AIY-Server/Config.txt" Line="4" Column="35" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

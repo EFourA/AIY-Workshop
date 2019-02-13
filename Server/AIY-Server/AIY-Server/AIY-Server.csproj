@@ -10,5 +10,7 @@
     <None Remove="330.wav" />
     <None Remove="0.wav" />
     <None Remove="Config.txt" />
+    <None Remove="tmp19342817216017464429" />
+    <None Remove="tmp19461317216017452278" />
   </ItemGroup>
 </Project>

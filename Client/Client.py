@@ -93,23 +93,38 @@ def AIY_Assistant():
         except FileNotFoundError:
             pass
 
-        
 
-def Test_Connection():
+def Test_Token():
     try:
-        print("Sending Ping")
+        print("Testing Token:")
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((HOST,PORT))
-        s.send(b"Ping")
-        reply = s.recv(4).decode('utf-8')
-        if reply == "Pong":
+        s.send(b"T")
+        bytesBack = int(s.recv(6).decode('utf-8'))
+        reply = s.recv(bytesBack).decode('utf-8')
+        print("GOT: "+reply)
+            
+        
+    except socket.error:
+        print("Ping Error")
+    
+
+def Test_Ping():
+    try:
+        print("Testing ping:")
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect((HOST,PORT))
+        s.send(b"P")
+        bytesBack = int(s.recv(6).decode('utf-8'))
+        reply = s.recv(bytesBack).decode('utf-8')
+        if reply == "pong":
             print("Ping pong received and sent")
         else:
             print("Ping sent but no pong")
             
         
     except socket.error:
-        print("Ping Error:")
+        print("Ping Error")
 
 
 def Practice_File():
@@ -136,9 +151,9 @@ def Practice_File():
 
 
 def main():
-    Test_Connection()
-    Practice_File()
-    #print(AIY_Assistant())
+    Test_Ping()
+    Test_Token()
+    
 
     
 
